@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIBERTAK // Command Dashboard</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%2300f0ff' d='M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1Z'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <canvas id="matrix-canvas" aria-hidden="true"></canvas>
+  <canvas id="net-canvas" aria-hidden="true"></canvas>
+  <div class="grid-floor" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <header class="hud hud-top-left">
+    <span class="hud-logo">◆ SIBERTAK</span>
+    <span class="hud-status"><i class="pulse-dot"></i>SYSTEM ONLINE</span>
+  </header>
+  <div class="hud hud-top-right" id="hud-clock">--:--:--</div>
+  <div class="hud hud-bottom-left">GRID: -6.30°S 107.30°E // NODE:KRW-01</div>
+  <div class="hud hud-bottom-right">SIBERTAK CORE v2.7.1</div>
+
+  <main class="dash-wrap">
+    <div class="dash-head">
+      <div class="dash-user">
+        <div class="avatar" id="dash-initial">?</div>
+        <div>
+          <p class="dash-welcome">SELAMAT DATANG KEMBALI,</p>
+          <h1 class="dash-name" id="dash-username">—</h1>
+          <p class="dash-meta">PERAN: <b>OPERATIF • LEVEL 3</b> &nbsp;//&nbsp; ANGGOTA SEJAK: <b id="dash-since">—</b></p>
+        </div>
+      </div>
+      <button type="button" class="btn-logout" id="logout-btn">KELUAR</button>
+    </div>
+
+    <div class="dash-grid">
+      <section class="panel panel-welcome">
+        <h3>// STATUS SESI</h3>
+        <div class="kv"><span class="k">STATUS AKSES</span><span class="v ok">DIBERIKAN ●</span></div>
+        <div class="kv"><span class="k">WAKTU LOGIN</span><span class="v" id="dash-login">—</span></div>
+        <div class="kv"><span class="k">TERMINAL</span><span class="v">KRW-01 / SECURE</span></div>
+        <div class="kv"><span class="k">ENKRIPSI KANAL</span><span class="v">AES-256-GCM</span></div>
+        <div class="kv"><span class="k">KEBAIJAN API</span><span class="v">TLS 1.3 / HSTS</span></div>
+      </section>
+
+      <section class="panel panel-stats">
+        <h3>// TELEMETRI SISTEM</h3>
+        <div class="stat-row">
+          <div class="stat-top"><span>CPU INTI</span><span class="val" id="cpu-val">0%</span></div>
+          <div class="bar"><div class="bar-fill" id="cpu-fill"></div></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-top"><span>MEMORI</span><span class="val" id="ram-val">0%</span></div>
+          <div class="bar"><div class="bar-fill" id="ram-fill"></div></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-top"><span>LALU LINTAS JARINGAN</span><span class="val" id="net-val">0%</span></div>
+          <div class="bar"><div class="bar-fill" id="net-fill"></div></div>
+        </div>
+      </section>
+
+      <section class="panel panel-log">
+        <h3>// LOG AKTIVITAS</h3>
+        <ul class="log-list" id="log-list"></ul>
+      </section>
+    </div>
+  </main>
+
+  <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+
+  <div class="overlay hidden" id="result-overlay">
+    <div class="overlay-text" id="overlay-text">AKSES DIBERIKAN</div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
